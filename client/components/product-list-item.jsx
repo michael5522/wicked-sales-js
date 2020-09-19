@@ -1,11 +1,20 @@
 import React from 'react';
 
 class ProductListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.clickHandle = this.clickHandle.bind(this);
+  }
+
+  clickHandle() {
+    this.props.view('details', { productId: this.props.product.productId });
+  }
+
   render() {
     const price = (this.props.product.price / 100).toFixed(2);
     return (
 
-      <div className="col-4 d-flex justify-content-center">
+      <div className="col-4 d-flex justify-content-center" onClick={this.clickHandle}>
         <div className="card mt-2 mb-2" style={{ width: '18rem' }}>
           <img src={this.props.product.image} className="card-img-top"></img>
           <div className="card-body">
